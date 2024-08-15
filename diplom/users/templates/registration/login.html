@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block page_content %}
+  <h1>Login</h1>
+  {% if form.errors %}
+    <p>{{ form.errors.error }}</p>
+  {% endif %}
+  <form action="{% url 'users:login' %}" method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+
+    <button type="submit" class="btn btn-primary">Войти</button> | <a href="{% url 'users:register' %}" class="btn btn-primary">Зарегистрироваться</a>
+  </form>
+
+
+{% endblock %}

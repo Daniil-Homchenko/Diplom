@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+    <h1>Корзина</h1>
+
+
+
+                            {% for item in cart %}
+                            {% if forloop.last %}
+                            {% for i in item.values %}
+                            {% for good in goods %}
+                            {% if i.product.id == good.id %}
+
+                                <div class="row">
+                                <div class="card sb-5" >
+                                  <img class="card-img-top" src="{% static good.image %}" style="margin:auto;height:400px;width:400px">
+                                  <div class="card-body">
+                                    <h5 class="card-title">{{ good.title }}</h5>
+                                    <h5 class="card-title">{{ good.price }} BYN</h5>
+                                    <p>
+                                      <a href="{% url 'goods:goods_detail' good.pk %}" class="btn btn-primary">
+                                    Подробнее
+                                    </a>
+                                       <a href="{% url 'cart:cart_add_or_remove' good.id %}">
+                                    <img src="https://vk.com/doc254206691_681525103?hash=5OuCnZU9eAL9A8TO0zXL1Z0LKNKvMraR9XvN8AeCok4&dl=tEkKghWLws4mBr4ScvWJZMYzlJiXRb6o3MgjyzSOuag&wnd=1&module=im" alt="Корзина" style="float:right;height:90px;width:90px" >
+                                    </a>
+                                    </p>
+
+                                  </div>
+                                </div>
+
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+    </div>
+    <h4>Общая стоимость корзины: {{ cart.get_total_price }}</h4>
+    <p class="text-right">
+        <a href="{% url 'cart:clear_cart' %}" class="btn btn-primary"> Очистить корзину</a>
+        <a href="{% url 'goods:goods_list' %}" class="btn btn-primary"> Продолжить покупки</a>
+    </p>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+            <h1>Поиск "{{search}}"</h1>
+{% for good in goods %}
+    {% if search in good.title %}
+      <div class="col-sm-4">
+        <div class="card sb-5" >
+            <img class="card-img-top" src="{% static good.image %}" width="500", height="500">
+            <div class="card-body">
+            <h5 class="card-title">{{ good.title }}</h5>
+            <h5 class="card-title">{{ good.price }} BYN</h5>
+                <a href="{% url 'cart:cart_add_or_remove' good.id %}">
+                              <img src="https://vk.com/doc254206691_681311887?hash=zTQjCTUtuZptjHoRa61d8JHk8dPmAXVCXqTrfdRz8Hs&dl=UesRtwf209XzYnZotypQjqHLTQnvEBYukLK8Ql7dZIP&wnd=1&module=im" alt="Корзина" style="float:right;height:80px;width:80px" >
+                </a>
+            <a href="{% url 'goods:goods_detail' good.pk %}" class="btn btn-primary">
+            Подробнее
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+{% endfor %}
+</div>
+{% endblock %}

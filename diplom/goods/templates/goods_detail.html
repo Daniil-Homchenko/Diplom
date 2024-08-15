@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1>{{ good.title }}</h1>
+        <h5>{{ good.created_on }}</h5>
+        <table>
+            <tr>
+                <th>
+                    <small>
+                        <img class="card-img-top" src="{% static good.image %}" style="width:300px; height:300px" >
+                    </small>
+                </th>
+                <th>
+                    <h5>{{ good.description }}</h5>
+                    <h5>{{ good.state.state}}</h5>
+                    <h5>{{ good.first_name }}</h5>
+                    <h5>{{ good.last_name }}</h5>
+                    <h5>+{{ good.phone_number}}</h5>
+                    <h1>{{ good.price }}</h1>
+                    <p class="text-right">
+                        <a href="{% url 'goods:goods_list' %}" class="btn btn-primary"> Продолжить покупки </a>
+                    </p>
+                </th>
+            </tr>
+        </table>
+
+
+    </div>
+</div>
+{% endblock %}

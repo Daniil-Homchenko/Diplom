@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+<h1>Объявления</h1>
+<form action="{% url 'goods:goods_search' %}">
+  <input placeholder="Поиск" name="search" class="form-control-file">
+  <button type="submit" class="btn btn-primary">Поиск</button>
+</form>
+<div class="col">
+
+  {% for good in goods %}
+
+                    <a href="{% url 'goods:goods_detail' good.pk %}" class="card-body">
+                        <div class="col-sm-4">
+                      <div class="card sb-5" >
+                        <div class="card-body">
+                          <img class="card-img-top" src="{% static good.image %}" style="margin:auto;height:400px;width:400px">
+                          <h5 class="card-title">{{ good.title }}</h5>
+                          <h5 class="card-title">{{ good.price }} BYN</h5>
+                          <a href="{% url 'cart:cart_add_or_remove' good.id %}">
+                              <img src="https://vk.com/doc254206691_681311887?hash=zTQjCTUtuZptjHoRa61d8JHk8dPmAXVCXqTrfdRz8Hs&dl=UesRtwf209XzYnZotypQjqHLTQnvEBYukLK8Ql7dZIP&wnd=1&module=im" alt="Корзина" style="float:right;height:80px;width:80px" >
+                          </a>
+                        </div>
+                      </div>
+                            </div>
+                    </a>
+
+{% endfor %}
+{% endblock %}
